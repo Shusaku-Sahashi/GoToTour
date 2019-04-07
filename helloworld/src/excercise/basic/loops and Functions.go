@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-func Squrt(x float64) float64 {
+func sqrt(x float64) float64 {
 	// diff = 0.001
 	// assume = 1
 	// 1.abs(x - assume ** 2) < diffかを確認
@@ -14,7 +14,7 @@ func Squrt(x float64) float64 {
 	const (
 		threshold = 0.001
 	)
-	var assume float64 = 1.0
+	assume := 1.0
 
 	for {
 		diff := math.Abs(x - (assume * assume))
@@ -25,14 +25,14 @@ func Squrt(x float64) float64 {
 
 		fmt.Println("%V, %V", diff, assume)
 
-		assume = Adjust(assume, x)
+		assume = adjust(assume, x)
 	}
 }
 
-func Adjust(z float64, x float64) float64 {
+func adjust(z float64, x float64) float64 {
 	return z - (z*z-x)/(2*z)
 }
 
 func main() {
-	fmt.Println(Squrt(2))
+	fmt.Println(sqrt(2))
 }
